@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 
 export default class Form extends Component{
-    constructor(){
-        super()
-    }
+    // constructor(){
+    //     super()
+    // }
+    
     render(){
         return(
             <div>FORM</div>
