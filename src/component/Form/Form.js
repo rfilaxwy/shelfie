@@ -8,6 +8,7 @@ export default class Form extends Component{
             input2:'',
             input3:''
         }
+        this.reset=this.reset.bind(this);
     }
     
     handleInput1(val){
@@ -21,7 +22,7 @@ export default class Form extends Component{
     }
 
     reset(){
-        this.setState()
+        this.setState({input1:'', input2:'',input3:''})
     }
 
 
@@ -31,11 +32,13 @@ export default class Form extends Component{
 
                 <input value={this.state.input1}
                         onChange={(e)=>{this.handleInput1(e.target.value)}}></input>
-                <input value={this.state.input2}></input>
-                <input value={this.state.input3}></input>
+                <input value={this.state.input2}
+                        onChange={(e)=>{this.handleInput2(e.target.value)}}></input>
+                <input value={this.state.input3}
+                        onChange={(e)=>{this.handleInput3(e.target.value)}}></input>
 
                 <button>Add</button>
-                <button>Cancel</button>
+                <button onClick={this.reset}>Cancel</button>
 
             </div>
         )
