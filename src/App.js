@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import axios from 'axios';
 
 //Components
 import Dashboard from './component/Dashboard/Dashboard';
@@ -11,9 +12,17 @@ class App extends Component {
   constructor(){
     super()
     this.state={
-      invList:[{name:'Oreos',price:5,image:'https://i5.walmartimages.ca/images/Enlarge/005/700/999999-66721005700.jpg'},{name:'Marshmellow',price:2,image:'https://www.altpress.com/wp-content/uploads/2018/07/lucky_charms_header-1.jpg'},{name:'Scallops',price:3,image:'https://cms.splendidtable.org/sites/default/files/styles/w2000/public/scallops_0.jpg?itok=8zIMd2fR'}],
+      invList:[],
     }
   }
+
+  componentDidMount(){
+    axios.get('api/inventory').then(response=>{
+      console.log(response)
+      this.setState({invList:response.data})
+    })
+  }
+
   render() {
     return (
       <div className="App">

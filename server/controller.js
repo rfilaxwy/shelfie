@@ -6,7 +6,7 @@ module.exports = {
     },
     read:(req,res)=>{
         const db =req.app.get('db');
-        db.getProducts().then(result=>{
+        db.get_Inventory().then(result=>{
             res.status(200).send(result)
         })
     }
