@@ -14,11 +14,18 @@ class App extends Component {
     this.state={
       invList:[],
     }
+    this.getProds = this.getProds.bind(this);
+  }
+
+  getProds(){
+    axios.get('/api/inventory').then(response=>{
+      
+      this.setState({invList:response.data})
+    })
   }
 
   componentDidMount(){
-    axios.get('api/inventory').then(response=>{
-      console.log(response)
+    axios.get('/api/inventory').then(response=>{
       this.setState({invList:response.data})
     })
   }
@@ -32,7 +39,7 @@ class App extends Component {
         
         < Dashboard
           list={this.state.invList} />
-        < Form />
+        < Form getProds={this.getProds}/>
         < Header />
       </div>
     );

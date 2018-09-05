@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 
 
-const port =   process.env.SERVER_PORT||8091;
+const port =   process.env.SERVER_PORT;
 massive(process.env.CONNECTION_STRING).then(db=>{
     app.set('db',db);
     app.listen(port,()=>{
@@ -27,7 +27,7 @@ massive(process.env.CONNECTION_STRING).then(db=>{
 //Endpoints
 
 app.get('/api/inventory',controller.read);
-
+app.post('/api/products', controller.create);
 // app.get('/api/inventory', (req,res)=>{
 //     const db =req.app.get('db');
 //     db.getProducts().then(result=>{

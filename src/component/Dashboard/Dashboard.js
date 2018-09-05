@@ -4,9 +4,9 @@ import './dashboard.css';
 
 
 export default class Dashboard extends Component{
-    constructor(props){
-        super(props)
-    }
+    // constructor(props){
+    //     super(props)
+    // }
     render(){
         const {list} =this.props;
         const dispList = list.map((item,index)=>{
