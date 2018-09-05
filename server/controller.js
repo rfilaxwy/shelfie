@@ -21,9 +21,9 @@ module.exports = {
 
     },
     delete:(req,res)=>{
-        const {id} = req.body
+        
         const db =req.app.get('db');
-        db.delete_product(id).then(result=>{
+        db.delete_product(req.params.id).then(result=>{
             db.get_inventory().then(result=>{
                 res.status(200).send(result)
             })

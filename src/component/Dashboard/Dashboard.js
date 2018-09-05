@@ -5,15 +5,16 @@ import axios from 'axios';
 
 
 export default class Dashboard extends Component{
-    constructor(props){
-        super(props)
-        this.state={
-            
-        }
+    constructor(){
+        super()
+        this.deleteProduct= this.deleteProduct.bind(this)
     }
 
     deleteProduct(id){
-        axios.delete(`/api/product/${id}`).then((response)=>{
+        const idInt =parseInt(id);
+        axios.delete(`/api/products/${idInt}`).then((response)=>{
+           console.log(response)
+           console.log(this.props.getProds())
             this.props.getProds();
         })
     }
