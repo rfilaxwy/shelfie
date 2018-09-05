@@ -7,13 +7,13 @@ const bodyParser = require('body-parser'),
 const cont =require('./controller') 
 require('dotenv').config();
 const app = express();
-let db;
+
 
 app.use(cors());
 app.use(bodyParser.json());
 
 
-
+let db;
 const port =   process.env.SERVER_PORT;
 massive(process.env.CONNECTION_STRING).then(db=>{
     app.set('db',db);
@@ -28,9 +28,4 @@ massive(process.env.CONNECTION_STRING).then(db=>{
 
 app.get('/api/inventory',controller.read);
 app.post('/api/products', controller.create);
-// app.get('/api/inventory', (req,res)=>{
-//     const db =req.app.get('db');
-//     db.getProducts().then(result=>{
-//         res.status(200).send(result)
-//     })
-// })
+app.delete('/api/products/:id',controller.delete);

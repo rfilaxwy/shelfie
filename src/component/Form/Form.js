@@ -6,7 +6,8 @@ export default class Form extends Component{
         this.state={
             name:'',
             price:'',
-            img:''
+            img:'',
+            
         }
         this.resetInputs=this.resetInputs.bind(this);
         this.createProduct=this.createProduct.bind(this);
@@ -24,7 +25,6 @@ export default class Form extends Component{
         if(name.length!==0 && price.length !== 0 && img.length !==0){ 
             console.log('BOOM')
             axios.post('/api/products', newprod).then((response)=>{
-                console.log(response);
                 this.props.getProds();
          })
         }

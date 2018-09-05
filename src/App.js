@@ -26,6 +26,7 @@ class App extends Component {
 
   componentDidMount(){
     axios.get('/api/inventory').then(response=>{
+      console.log(response.data)
       this.setState({invList:response.data})
     })
   }
@@ -37,7 +38,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to Shelfie</h1>
         </header>
         
-        < Dashboard
+        < Dashboard getProds={this.getProds}
           list={this.state.invList} />
         < Form getProds={this.getProds}/>
         < Header />
