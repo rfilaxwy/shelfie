@@ -26,6 +26,7 @@ export default class Dashboard extends Component{
             return(
             <Product val={item} key={item.id}
                     deleteProduct={this.deleteProduct}
+                    currentProdHandle={this.props.currentProdHandle}
             />
             )
         })

@@ -7,24 +7,35 @@ export default class Form extends Component {
             name: '',
             price: '',
             img: '',
-            currentProdId:null
+            currentProdId:null,
+            editing:false
         }
         this.resetInputs = this.resetInputs.bind(this);
         this.createProduct = this.createProduct.bind(this);
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.data.id !== this.props.data.id) {
+       console.log(this.props)
+        if (prevProps.currentProd !== this.props.currentProd) {
             this.setState({
                 name: this.props.data.name,
                 price: this.props.data.price,
                 img: this.props.data.img,
             })
+        } 
+        
+    }
+
+    buttonToggle(){
+        const add= document.getElementById('addButton');
+        const update = document.getElementById('updateButton');
+        
+        if(this.state.editing){
+            add.style.display='none'
+            update.style.display='none'
         } else{
-            const hide = {display:hidden};
-            const show ={display:block};
-            var addButton = getElementById('addButton').style(hide);
-            var updateButton = getElementById('updateButton').style(show);
+            add.style.display='block'
+            update.style.display='none'
         }
     }
 
@@ -32,10 +43,12 @@ export default class Form extends Component {
         const name = this.state.name;
         const price = this.state.price;
         const img = this.state.img;
+        
         const newprod = {
             name: name,
             price: price,
-            img: img
+            img: img,
+            
         };
         if (name.length !== 0 && price.length !== 0 && img.length !== 0) {
             console.log('BOOM')
@@ -77,8 +90,8 @@ export default class Form extends Component {
                 <input value={this.state.img}
                     onChange={(e) => { this.handleInput3(e.target.value) }}></input>
 
-                <button id='addButton' onClick={this.createProduct}>Add</button>
-                <button id='updateButton' onClick={this.updateProduct}>Update</button>
+                <button  onClick={this.createProduct}>Add</button>
+                <button  onClick={this.updateProduct}>Save Changes</button>
                 <button onClick={this.reset}>Cancel</button>
 
             </div>
