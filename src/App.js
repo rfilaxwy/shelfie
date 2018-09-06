@@ -13,6 +13,11 @@ class App extends Component {
     super()
     this.state={
       invList:[],
+      currentProd:{
+        name:'',
+        price:'',
+        img:''
+      }
     }
     this.getProds = this.getProds.bind(this);
   }
@@ -31,6 +36,10 @@ class App extends Component {
     })
   }
 
+  currentProdHandle(val){
+    this.setState({name:val.name, price:val.price,img:val.img})
+  }
+
   render() {
     return (
       <div className="App">
@@ -40,7 +49,9 @@ class App extends Component {
         
         < Dashboard getProds={this.getProds}
           list={this.state.invList} />
-        < Form getProds={this.getProds}/>
+        < Form getProds={this.getProds}
+              currentProd={this.state.currentProd}
+        />
         < Header />
       </div>
     );
