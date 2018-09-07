@@ -15,7 +15,6 @@ export default class Form extends Component {
     }
 
     componentDidUpdate(prevProps) {
-       console.log(this.props)
         if (prevProps.currentProd !== this.props.currentProd) {
             this.setState({
                 name: this.props.data.name,

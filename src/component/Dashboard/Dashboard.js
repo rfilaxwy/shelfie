@@ -7,7 +7,18 @@ import axios from 'axios';
 export default class Dashboard extends Component{
     constructor(){
         super()
+        this.state={
+            id:'',
+            name:'',
+            price:'',
+            img:''
+        }
+
         this.deleteProduct= this.deleteProduct.bind(this)
+    }
+
+    editProduct(val){
+        this.setState({id:val.id, name:val.name, price:val.price, img:val.img})
     }
 
     deleteProduct(id){
@@ -21,12 +32,14 @@ export default class Dashboard extends Component{
 
     render(){
         const {list} =this.props;
+        console.log(list)
         const dispList = list.map((item,index)=>{
             
             return(
             <Product val={item} key={item.id}
                     deleteProduct={this.deleteProduct}
                     currentProdHandle={this.props.currentProdHandle}
+                    editProduct(val)
             />
             )
         })
@@ -35,6 +48,8 @@ export default class Dashboard extends Component{
                 <h3>DASHBOARD</h3>
                 
                 {dispList}
+
+
             </div>
             
         )

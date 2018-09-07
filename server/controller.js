@@ -1,5 +1,4 @@
 
-
 module.exports = {
     create:(req,res)=>{
         //res.send(req.body)
@@ -18,7 +17,21 @@ module.exports = {
         })
     },
     update:(req,res)=>{
-
+        const db = req.app.get('db');
+        const rp =req.params;
+        const rb =req.body;
+        if(rp.id==0){
+            db.create_product(name,price,img).then(result=>{
+                db.get_inventory().then(result=>{
+                res.status(200).send(result)})
+            })
+        } else{
+            db.update_product(rp.id,rb.name,rb.price,rb.img).then(result=>{
+                db.get_inventory().then(result=>{
+                    res.status(200).send(result)
+                    })
+                })
+            }
     },
     delete:(req,res)=>{
         

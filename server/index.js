@@ -29,3 +29,4 @@ massive(process.env.CONNECTION_STRING).then(db=>{
 app.get('/api/inventory',controller.read);
 app.post('/api/products', controller.create);
 app.delete('/api/products/:id',controller.delete);
+app.put('/api/products/:id',controller.update);

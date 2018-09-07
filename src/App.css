@@ -16,7 +16,15 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.productSection{
+  display:flex;
+  justify-content: space-around;
+}
+.productCard{
+  background: gray;
+  border-radius:5px;
+  box-shadow: #222 2px;
+  height: 400px;
+  width:22%;
+  margin-top:60px;
 }
