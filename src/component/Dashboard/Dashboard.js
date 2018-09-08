@@ -77,7 +77,7 @@ export default class Dashboard extends Component{
                 this.props.getProds();
             })
         }
-            
+            this.resetInputs();
         
     }
 
@@ -122,16 +122,16 @@ export default class Dashboard extends Component{
                         <div></div>
                         <div>
                             <h5>Image URL:</h5>
-                            <input value={this.state.img} placeholder='Img URL' onChange={(e)=>{this.handleImgChange(e.target.val)}}></input></div>
+                            <input value={this.state.img} placeholder='Img URL' onChange={(e)=>{this.handleImgChange(e.target.value)}}></input></div>
                         <div>
                             <h5>Product Name:</h5>
-                            <input value={this.state.name} placeholder='Product Name' onChange={(e)=>{this.handleNameChange(e.target.val)}}></input></div>
+                            <input value={this.state.name} placeholder='Product Name' onChange={(e)=>{this.handleNameChange(e.target.value)}}></input></div>
                         <div>
                             <h5>Price:</h5>
                             <input value={this.state.price} placeholder='Product Price' onChange={(e)=>{this.handlePriceChange(e.target.value)}}></input>
                         </div>
                         <button onClick={this.resetInputs}>Clear</button>
-                        <button onClick={()=>{this.updateProduct(this.state.id)}}>Update</button>
+                        <button onClick={()=>{this.updateProduct(this.state.id)}}>Update/Add</button>
                     </div>
                 
                     </div>
