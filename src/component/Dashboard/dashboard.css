@@ -4,17 +4,31 @@ img{
 }
 
 .card{
-    background-color: rgb(111, 121, 131);
+    background-color: rgb(133, 147, 161);
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     color:white;
-    border:1px solid black;
+    border:1px solid slategray;
+    border-radius:5px;
     padding:10px;
     margin:auto;
     margin-top:5px;
     margin-bottom:5px;
-    width:200px;
+    width:175px;
 }
 
+.productDisplay{
+    display:flex;
+    justify-content:space-between;
+}
+.productCard{
+    background: gray;
+    border-radius:5px;
+    box-shadow: #222 2px;
+    height: 400px;
+    width:200px;
+    margin-top:175px;
+    margin:40px;
+  }

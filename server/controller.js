@@ -20,6 +20,8 @@ module.exports = {
         const db = req.app.get('db');
         const rp =req.params;
         const rb =req.body;
+        console.log(rp);
+        console.log(rb)
         if(rp.id==0){
             db.create_product(name,price,img).then(result=>{
                 db.get_inventory().then(result=>{

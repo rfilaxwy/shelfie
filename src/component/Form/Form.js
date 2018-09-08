@@ -75,18 +75,16 @@ export default class Form extends Component {
         this.setState({ name: '', price: '', img: '' })
     }
 
-
-
     render() {
 
         return (
             <div>FORM
 
-                <input value={this.state.name}
+                <input placeholder='Product Name' value={this.state.name}
                     onChange={(e) => { this.handleInput1(e.target.value) }}></input>
-                <input value={this.state.price}
+                <input placeholder='Product Price' value={this.state.price}
                     onChange={(e) => { this.handleInput2(e.target.value) }}></input>
-                <input value={this.state.img}
+                <input placeholder='Img URL'value={this.state.img}
                     onChange={(e) => { this.handleInput3(e.target.value) }}></input>
 
                 <button  onClick={this.createProduct}>Add</button>

@@ -11,7 +11,6 @@ export default function Product(props){
                 <p>Price:{props.val.price}</p>
                 <div>
                     <button onClick={()=>{props.deleteProduct(props.val.id)}}>Delete</button>
-                    <button>Update</button>
                 </div>
             </div>
         )

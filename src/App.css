@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  width: 100vw;
+  background:rgb(85, 85, 79);
 }
 .App-header {
   background-color: #222;
@@ -19,12 +21,11 @@
 .productSection{
   display:flex;
   justify-content: space-around;
+  width: 100vw;
 }
-.productCard{
-  background: gray;
-  border-radius:5px;
-  box-shadow: #222 2px;
-  height: 400px;
-  width:22%;
-  margin-top:60px;
+
+
+#title{
+  font-weight: 500;
+  font-size: 40px;
 }
