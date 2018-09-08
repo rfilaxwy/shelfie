@@ -9,7 +9,7 @@ export default class Dashboard extends Component{
         super()
         this.state={
             prodList:[],
-            id:'',
+            id:0,
             name:'',
             price:null,
             img:''
@@ -18,6 +18,10 @@ export default class Dashboard extends Component{
         this.deleteProduct= this.deleteProduct.bind(this);
         this.currentProdHandle= this.currentProdHandle.bind(this);
         this.updateProduct = this.updateProduct.bind(this);
+        this.resetInputs =this.resetInputs.bind(this);
+        this.handleImgChange =this.handleImgChange.bind(this);
+        this.handleNameChange = this.handleNameChange.bind(this);
+        this.handlePriceChange = this.handlePriceChange.bind(this);
     }
     componentDidMount(){
         axios.get('/api/inventory').then(response=>{
@@ -31,6 +35,7 @@ export default class Dashboard extends Component{
     }
 
     handleNameChange(val){
+        console.log(val)
         this.setState({name:val})
     }
     handlePriceChange(val){
@@ -39,6 +44,7 @@ export default class Dashboard extends Component{
         this.setState({price:val})
     }
     handleImgChange(val){
+        console.log(val)
         this.setState({img:val})
     }
 
@@ -51,26 +57,43 @@ export default class Dashboard extends Component{
     }
 
     updateProduct(id){
-        const body = {name:this.state.name, price:this.state.price, img:this.state.img};
+        const name = this.state.name;
+        const price = this.state.price;
+        const img = this.state.img;
+        const newprod = {
+            name: name,
+            price: price,
+            img: img,
+            
+        };
         debugger
-        console.log(body)
-            axios.put(`/api/products/${id}`,body).then((response)=>{
-            debugger
-                console.log(response)
-            this.props.getProds();
-        })
+        if(this.state.id==0){
+            axios.post('/api/products', newprod).then((response) => {
+                this.props.getProds();});
+        } else{
+            axios.put(`/api/products/${id}`,newprod).then((response)=>{
+                debugger
+                    console.log(response)
+                this.props.getProds();
+            })
+        }
+            
+        
     }
 
     currentProdHandle(val){
         const proLis =this.state.prodList;
         for(let i=0;i<proLis.length; i++){
-            console.log(proLis[i]['price'])
-            if(val.id==proLis[i]['id']){
+            if(val.id===proLis[i]['id']){
                 this.setState({id:proLis[i]['id'],name:proLis[i]['name'],price:proLis[i]['price'],img:proLis[i]['img']})
             }
         }
             
       }
+
+      resetInputs() {
+        this.setState({id:0, name:'', price:'', img:'' })
+    }
 
     render(){
         const {list} =this.props;
@@ -99,15 +122,15 @@ export default class Dashboard extends Component{
                         <div></div>
                         <div>
                             <h5>Image URL:</h5>
-                            <input placeholder='Img URL' onChange={(e)=>{this.handleImgChange(e.target.val)}} value={this.state.img}></input></div>
+                            <input value={this.state.img} placeholder='Img URL' onChange={(e)=>{this.handleImgChange(e.target.val)}}></input></div>
                         <div>
                             <h5>Product Name:</h5>
-                            <input placeholder='Product Name' onChange={(e)=>{this.handleNameChange(e.target.val)}} value={this.state.name}></input></div>
+                            <input value={this.state.name} placeholder='Product Name' onChange={(e)=>{this.handleNameChange(e.target.val)}}></input></div>
                         <div>
                             <h5>Price:</h5>
-                            <input placeholder='Product Price' onChange={(e)=>{this.handlePriceChange(e.target.value)}} value={this.state.price}></input>
+                            <input value={this.state.price} placeholder='Product Price' onChange={(e)=>{this.handlePriceChange(e.target.value)}}></input>
                         </div>
-                    
+                        <button onClick={this.resetInputs}>Clear</button>
                         <button onClick={()=>{this.updateProduct(this.state.id)}}>Update</button>
                     </div>
                 
